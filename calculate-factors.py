@@ -4,9 +4,10 @@ minimumNumber = 64
 arbitraryMaximumNumber = 100000
 
 for baseNumber in range(minimumNumber, arbitraryMaximumNumber):
-  factors = []
+  factors = [1, baseNumber]
   minimumFactor = 2
   maximumFactor = int(baseNumber / 2)
+  firstAndLastFactorsLength = 2
 
   for factorOfBaseNumber in range(minimumFactor, maximumFactor):
     if baseNumber % factorOfBaseNumber == 0:
