@@ -1,19 +1,39 @@
-import os
+import sys
+import time
+import argparse
 
-minimumNumber = 64
-arbitraryMaximumNumber = 100000
+parser = argparse.ArgumentParser(description='Find a number between a range of a starting number and ending number that has a specific number of factors.')
+parser.add_argument('--startNum', required=True, nargs='?', type=int, help='First number in range to check against a specific number of factors.')
+parser.add_argument('--endNum', required=True, nargs='?', type=int, help='Last number in range to check number against a specific number of factors.')
+parser.add_argument('--numberOfFactors', required=True, nargs='?', type=int, help='The number of factors required.')
+args = parser.parse_args()
 
-for baseNumber in range(minimumNumber, arbitraryMaximumNumber):
-  factors = [1, baseNumber]
+if (args.startNum < args.numberOfFactors):
+  raise Exception('The startNum must be >= numberOfFactors')
+
+firstNumberInRange = args.startNum
+lastNumberInRange = args.endNum
+requiredNumberOfFactors = args.numberOfFactors
+initialTime = time.time()
+
+for currentNumberInRange in range(firstNumberInRange, lastNumberInRange):
+  factors = [1, currentNumberInRange]
   minimumFactor = 2
-  maximumFactor = int(baseNumber / 2)
-  firstAndLastFactorsLength = 2
+  maximumFactor = int(currentNumberInRange / 2)
+  currentTime = time.time()
+  elapsedSeconds = (currentTime - initialTime)
 
-  for factorOfBaseNumber in range(minimumFactor, maximumFactor):
-    if baseNumber % factorOfBaseNumber == 0:
-      factors.append(factorOfBaseNumber)
+  print(f"Elapsed Seconds: {elapsedSeconds}", end='\r')
+  sys.stdout.flush()
 
-  if len(factors) == 64:
-    print(baseNumber)
+  # make max factor range inclusive by adding one
+  for factorOfCurrentNumberInRange in range(minimumFactor, maximumFactor+1):
+    if currentNumberInRange % factorOfCurrentNumberInRange == 0:
+      factors.append(factorOfCurrentNumberInRange)
+
+  numberOfFactors = len(factors)
+  if numberOfFactors == requiredNumberOfFactors:
+    print()
+    print(f"The number {currentNumberInRange} has exactly {numberOfFactors} factors.")
+    print()
     break
-  
