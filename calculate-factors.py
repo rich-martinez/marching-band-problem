@@ -2,7 +2,7 @@ import sys
 import time
 import argparse
 
-parser = argparse.ArgumentParser(description='Find a number between a range of a starting number and ending number that has a specific number of factors.')
+parser = argparse.ArgumentParser(description='Find a number between a range of a starting number and ending number that has a specific number of factors. *This has only been tested with positive numbers.')
 parser.add_argument('-s', '--startNum', nargs='?', type=int, help='First number in range to check against a specific number of factors.')
 parser.add_argument('-e', '--endNum', required=True, nargs='?', type=int, help='Last number in range to check number against a specific number of factors.')
 parser.add_argument('-f', '--numberOfFactors', required=True, nargs='?', type=int, help='The number of factors required.')
