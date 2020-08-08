@@ -3,15 +3,15 @@ import time
 import argparse
 
 parser = argparse.ArgumentParser(description='Find a number between a range of a starting number and ending number that has a specific number of factors.')
-parser.add_argument('--startNum', required=True, nargs='?', type=int, help='First number in range to check against a specific number of factors.')
-parser.add_argument('--endNum', required=True, nargs='?', type=int, help='Last number in range to check number against a specific number of factors.')
-parser.add_argument('--numberOfFactors', required=True, nargs='?', type=int, help='The number of factors required.')
+parser.add_argument('-s', '--startNum', nargs='?', type=int, help='First number in range to check against a specific number of factors.')
+parser.add_argument('-e', '--endNum', required=True, nargs='?', type=int, help='Last number in range to check number against a specific number of factors.')
+parser.add_argument('-f', '--numberOfFactors', required=True, nargs='?', type=int, help='The number of factors required.')
 args = parser.parse_args()
 
-if (args.startNum < args.numberOfFactors):
+firstNumberInRange = args.startNum or args.numberOfFactors
+if (firstNumberInRange < args.numberOfFactors):
   raise Exception('The startNum must be >= numberOfFactors')
 
-firstNumberInRange = args.startNum
 lastNumberInRange = args.endNum
 requiredNumberOfFactors = args.numberOfFactors
 initialTime = time.time()
@@ -23,7 +23,7 @@ for currentNumberInRange in range(firstNumberInRange, lastNumberInRange):
   currentTime = time.time()
   elapsedSeconds = (currentTime - initialTime)
 
-  print(f"Elapsed Seconds: {elapsedSeconds}", end='\r')
+  print(f"Elapsed Time in Seconds: {elapsedSeconds}", end='\r')
   sys.stdout.flush()
 
   # make max factor range inclusive by adding one
