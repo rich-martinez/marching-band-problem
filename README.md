@@ -1,7 +1,7 @@
 # Marching Band Problem
 
 This tool is a Python CLI that is designed to solve the Marching Band Problem 
-as seen on [Matt Park's Maths Puzzles](https://www.youtube.com/watch?v=5GZ5IqxAt30&feature=emb_title).
+as seen on [Matt Parker's Maths Puzzles](https://www.youtube.com/watch?v=5GZ5IqxAt30&feature=emb_title).
 
 ## Requirements
 ### Python
